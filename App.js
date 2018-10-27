@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { createSwitchNavigator, createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 import { Ionicons } from '@expo/vector-icons'
 import { Platform } from 'react-native'
-import { Permissions } from 'expo'
+import { Permissions, Notifications } from 'expo'
 
 import HomeScreen from './screens/Home'
 import FavoritesScreen from './screens/Favorites'
@@ -60,8 +60,21 @@ const MainNavigator = createSwitchNavigator(
 )
 
 export default class App extends Component {
+  state = {
+    notification: {},
+  }
+
   componentDidMount() {
     registerForPushNotificationAsync()
+
+    this._notificationSubscription = Notifications.addListener(this._handleNotification)
+  }
+
+  _handleNotification = (notification) => {
+    this.setState({notification: notification});
+
+    alert(`Origen: ${this.state.notification.origin}, Data: ${JSON.stringify(this.state.notification.data)}`)
+
   }
 
   render() {
