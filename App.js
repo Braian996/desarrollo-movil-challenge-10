@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { createSwitchNavigator, createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 import { Ionicons } from '@expo/vector-icons'
 import { Platform } from 'react-native'
-import { Permissions, Notifications } from 'expo'
+import { Notifications } from 'expo'
 
 import HomeScreen from './screens/Home'
 import FavoritesScreen from './screens/Favorites'
@@ -73,7 +73,7 @@ export default class App extends Component {
   _handleNotification = (notification) => {
     this.setState({notification: notification});
 
-    alert(`Origen: ${this.state.notification.origin}, Data: ${JSON.stringify(this.state.notification.data)}`)
+    alert(`Origen: ${this.state.notification.origin}, Data: ${JSON.stringify(this.state.notification.data.message)}`)
 
   }
 
