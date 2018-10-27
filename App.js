@@ -75,6 +75,7 @@ export default class App extends Component {
 
     alert(`Origen: ${this.state.notification.origin}, Data: ${JSON.stringify(this.state.notification.data.message)}`)
 
+
   }
 
   render() {
